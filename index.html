@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+			<style>
+			.square
+			{
+			  height: 120px;
+			  width: 120px;
+			  background-color: #cecece;
+			}
+			i
+			{
+			  border: solid #2a8ce8;
+			  border-width: 0 3px 3px 0;
+			  display: inline-block;
+			  padding: 3px;
+			}
+			.up
+			{
+			  transform: rotate(-135deg);
+			  -webkit-transform: rotate(-135deg);
+			}
+			.down
+			{
+			  transform: rotate(45deg);
+			  -webkit-transform: rotate(45deg);
+			}
+			/*.padding-left
+			{
+				margin-left: 25px;
+			}*/
+			.level
+			{
+				font-size:48px;
+				font-family: "Arial";
+				margin-top: -15px;
+				margin-top: -88px;
+			}
+			.center {
+				text-align: center;
+			}
+			.circle {
+			  	height: 20px;
+			  	width: 20px;
+			  	background-color: #fff;
+			  	color:#2a8ce8;
+			  	border-radius: 50%;
+			}
+			.level-button {
+				font-size:20px;
+				font-family: "Arial";
+				margin-left: 97px;
+			}
+			.buttons
+			{
+				margin-top: -36px;
+
+			}
+		</style>
+	</head>
+	<body>
+		<div class="up-down">
+			<i class="arrow up"></i>
+			<br>
+			<i class="arrow down"></i>
+		</div>
+		<div>
+			<div class="square padding-left">
+
+				<div class="buttons  level-button center">
+					<div class="circle">5</div>
+					<div class="circle">4</div>
+					<div class="circle">3</div>
+					<div class="circle">2</div>
+					<div class="circle">1</div>
+					<div class="circle">0</div>
+				</div>
+				<div class="level center">
+					0
+				</div>
+			</div>
+		</div>
+		<br>
+	</body>
+</html>
