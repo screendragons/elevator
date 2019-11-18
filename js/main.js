@@ -1,27 +1,7 @@
-// var current = 0;
-
-// $(document).ready(function(){
-
-//   $("level-button div").click(function(){
-
-//     var floor = parseInt($(this).data("floor")),
-//      height = floor*20,
-//      animate = Math.abs(current-floor)*1000;
-//    if(floor == current) return;
-
-//     setTimeout(function(){$("#elevatorContainer").css("transition","all "+animate+"ms linear");
-//     $("#elevatorContainer").css("bottom",height+"%");
-//     current = floor;
-//     setTimeout(function(){
-//     },animate);},300);
-//   });
-
-// });
 var ElevatorController = (function() {
-    /**
-     * Constructor.  Takes an array of the names of the floors, from bottom
-     * to top.
-     */
+
+    //Constructor.  Takes an array of the names of the floors, from bottom to top.
+
     function ElevatorController(floors) {
         this.floors = floors.map(function(fl) { return fl.toString(); });
         this.travelTime = 1500;     // milliseconds from floor to floor
@@ -35,16 +15,15 @@ var ElevatorController = (function() {
         };
     }
 
-    /**
-     * Registers a function to be called when an event occurs.
-     * Returns this object, for convenient chaining.
-     *
-     * The callback will be called with two parameters.  The first
-     * parameter is the elevator state, which is an object with
-     * attributes named "motion" (+1, 0, or -1) and "currentFloor".
-     * The second parameter is a string describing the event type:
-     * "up", "down", "arrived", or "floor".
-     */
+
+    // Registers a function to be called when an event occurs.
+    // Returns this object, for convenient chaining.
+    // The callback will be called with two parameters.  The first
+    // parameter is the elevator state, which is an object with
+    // attributes named "motion" (+1, 0, or -1) and "currentFloor".
+    // The second parameter is a string describing the event type:
+    // "up", "down", "arrived", or "floor".
+
     ElevatorController.prototype.addCallback = function(callback) {
         this.callbacks.push(callback);
         return this;
@@ -59,12 +38,9 @@ var ElevatorController = (function() {
         return this;
     };
 
-    /**
-     * Informs callbacks of the current state by sending them a "floor"
-     * event.
-     */
+    //Informs callbacks of the current state by sending them a "floor" event.
     ElevatorController.prototype.refresh = function() {
-        fireEvent(this, 'floor');
+        fireEvent(this, 'floor', 'active');
         return this;
     };
 
@@ -104,7 +80,10 @@ var ElevatorController = (function() {
             fireEvent(ctrl, "down");
         }
         if (!ctrl.interval) {
-            ctrl.interval = window.setInterval(function() { react(ctrl); }, ctrl.travelTime);
+            ctrl.interval = window.setInterval(function() {
+                react(ctrl);
+            }
+            , ctrl.travelTime);
         }
     }
 
@@ -138,12 +117,18 @@ var elev = new ElevatorController([0, 1, 2, 3, 4, 5]);
     if (event === "up")
     {
         $('#up-indicator').addClass('lit');
-    } else if (event === "down")
+        $('.square').addClass('active');
+    }
+    else if (event === "down")
     {
         $('#down-indicator').addClass('lit');
-    } else if (event === "arrived")
+        $('.square').addClass('active');
+
+    }
+    else if (event === "arrived")
     {
         $('#up-indicator').add('#down-indicator').removeClass('lit');
+        $('.square').add('#down-indicator').removeClass('active');
     }
     })
     .addCallback(function floorNumberCallback(ctrl, event)
@@ -161,3 +146,5 @@ $(function init() {
     });
     elev.refresh();
 });
+
+
